@@ -1,13 +1,8 @@
 //import { useState } from 'react'
+import Header from "./components/Header"
 
 const App = () => {
-  return (
-    <div className='mx-auto flex items-center'>
-      <div>
-        <p className='text-4xl'>Search</p>
-      </div>
-    </div>
-  )
+  return <Header />
 }
 
 export default App
