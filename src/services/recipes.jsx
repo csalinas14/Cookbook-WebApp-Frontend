@@ -8,8 +8,8 @@ const setToken = (newToken) => {
 }
 
 //used for standard recipe search
-const getDefaultSearch = async (recipeString) => {
-  const url = `${baseUrl}/recipeSearch/${recipeString}`
+const getDefaultSearch = async ({ recipeString, page }) => {
+  const url = `${baseUrl}/recipeSearch?recipe=${recipeString}&page=${page || 0}`
   console.log(recipeString)
   const response = await axios.get(url)
   return response.data

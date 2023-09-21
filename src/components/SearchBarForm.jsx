@@ -23,7 +23,7 @@ const SearchBarForm = () => {
   const searchRecipes = (event) => {
     event.preventDefault()
     //console.log(search)
-    dispatch(getRecipes(search))
+    dispatch(getRecipes({ recipeString: search }))
 
     setSearch('')
   }

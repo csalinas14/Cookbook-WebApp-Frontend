@@ -1,8 +1,14 @@
 //import { useState } from 'react'
-import Header from "./components/Header"
+import Header from './components/Header'
+import RecipeList from './components/RecipeList'
 
 const App = () => {
-  return <Header />
+  return (
+    <div>
+      <Header />
+      <RecipeList />
+    </div>
+  )
 }
 
 export default App
