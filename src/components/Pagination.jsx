@@ -60,8 +60,8 @@ const Pagination = () => {
   const disableFirstArrow = searchParams.get('page') == 1 ? true : ''
   const disableLastArrow = searchParams.get('page') == lastPage ? true : ''
 
-  console.log(searchParams.get('page'))
-  console.log(disableFirstArrow)
+  //console.log(searchParams.get('page'))
+  //console.log(disableFirstArrow)
 
   const nextPage = (event, next) => {
     event.preventDefault()
@@ -101,7 +101,7 @@ const Pagination = () => {
             />
           </svg>
         </button>
-        {lastTripleDots ? (
+        {lastTripleDots && lastPage > 5 ? (
           <>
             <PageNumber page={1} /> <PageNumber page={'...'} />
           </>
@@ -111,7 +111,7 @@ const Pagination = () => {
         {pageArray.map((number) => (
           <PageNumber key={number} page={number} />
         ))}
-        {!lastTripleDots ? (
+        {!lastTripleDots && lastPage > 5 ? (
           <>
             <PageNumber page={'...'} /> <PageNumber page={lastPage} />
           </>

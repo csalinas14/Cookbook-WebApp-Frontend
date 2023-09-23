@@ -22,7 +22,7 @@ const SearchBarForm = () => {
 
   const searchRecipes = (event) => {
     event.preventDefault()
-    //console.log(search)
+    console.log(search)
     const searchObject = { recipeString: search, page: 1 }
     //dispatch(getRecipes(searchObject))
     setSearchParams(searchObject)

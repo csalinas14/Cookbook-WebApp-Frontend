@@ -17,7 +17,7 @@ const Home = () => {
   const page = searchParams.get('page')
 
   useEffect(() => {
-    console.log('testhere')
+    console.log('HOME USEEFFECT')
     if (!recipe && searchParams.size > 0) {
       navigate('/', { replace: true })
     }
@@ -26,7 +26,7 @@ const Home = () => {
     } else {
       dispatch(resetRecipes())
     }
-  }, [searchParams.size, page])
+  }, [searchParams.size, page, recipe])
 
   return (
     <div>
