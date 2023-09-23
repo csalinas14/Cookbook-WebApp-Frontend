@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { getRecipes } from '../reducers/recipeReducer'
+import { useSearchParams } from 'react-router-dom'
 
 const SearchButton = ({ name, handleClick, type }) => {
   const active = type === name ? 'bg-blue-500' : 'bg-gray-100'
@@ -16,15 +16,16 @@ const SearchButton = ({ name, handleClick, type }) => {
 }
 
 const SearchBarForm = () => {
-  const dispatch = useDispatch()
   const [search, setSearch] = useState('')
   const [searchType, setSearchType] = useState('Standard')
+  const [searchParams, setSearchParams] = useSearchParams()
 
   const searchRecipes = (event) => {
     event.preventDefault()
     //console.log(search)
-    dispatch(getRecipes({ recipeString: search }))
-
+    const searchObject = { recipeString: search, page: 1 }
+    //dispatch(getRecipes(searchObject))
+    setSearchParams(searchObject)
     setSearch('')
   }
 

@@ -1,12 +1,13 @@
 //import { useState } from 'react'
-import Header from './components/Header'
-import RecipeList from './components/RecipeList'
+import Home from './components/Home'
+import { Routes, Route, useMatch } from 'react-router-dom'
 
 const App = () => {
   return (
     <div>
-      <Header />
-      <RecipeList />
+      <Routes>
+        <Route path='/' element={<Home />} />
+      </Routes>
     </div>
   )
 }
