@@ -3,15 +3,17 @@ import { useState } from 'react'
 const Navbar = () => {
   const [hideMobileMenu, setHideMobileMenu] = useState(true)
 
+  //console.log(hideMobileMenu)
   const toggleMobileMenu = (event) => {
     //event.preventDefault()
     setHideMobileMenu(!hideMobileMenu)
   }
-  const hidden = hideMobileMenu ? '-100' : '6'
+  const hidden = hideMobileMenu ? 'top-[-100%]' : 'top-[7%]'
+  //console.log(hidden)
   return (
-    <nav className='m:w-[92%] mx-auto flex w-full items-center justify-between px-5 py-1'>
+    <nav className='m:w-[92%] mx-auto flex w-full items-center justify-between px-3 py-1'>
       <div
-        className={`absolute left-0 top-[${hidden}%] z-10 flex min-h-[30vh] w-full items-center bg-white px-5 md:static md:min-h-fit md:w-auto`}
+        className={`absolute left-0 ${hidden} z-10 flex min-h-[30vh] w-full items-center bg-white px-4 md:static md:min-h-fit md:w-auto`}
       >
         <ul className='flex flex-col gap-8 md:flex-row md:items-center md:gap-[4vw]'>
           <li>

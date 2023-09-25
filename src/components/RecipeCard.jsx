@@ -1,9 +1,36 @@
+import { useSearchParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import recipeService from '../services/recipes'
+import { useQuery } from '@tanstack/react-query'
+
 const RecipeCard = ({ recipe }) => {
   //const recipes = useSelector(({recipes}) => recipes)
   //console.log(recipes)
+  const [searchParams, setSearchParams] = useSearchParams()
+  const navigate = useNavigate()
+
+  const handleRecipe = (event) => {
+    event.preventDefault()
+    //const searchObject = { id: recipe.id }
+    //dispatch(getRecipes(searchObject))
+    //result.refetch()
+    //refetch()
+    navigate(`/recipes/${recipe.id}`)
+  }
+
+  /*
+  const { data, refetch } = useQuery({
+    queryKey: ['recipeCall'],
+    queryFn: () => recipeService.getRecipeInfo(recipe.id),
+    refetchOnWindowFocus: false,
+    retry: 1,
+    enabled: false,
+  })
+*/
   return (
     <div
-      onClick={() => console.log('go here')}
+      //to={`/recipes/${recipe.id}`}
+      onClick={handleRecipe}
       className='group col-span-1 cursor-pointer'
     >
       <div className='flex w-full flex-col items-center gap-2 sm:items-start'>

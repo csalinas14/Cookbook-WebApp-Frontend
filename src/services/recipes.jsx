@@ -18,4 +18,12 @@ const getDefaultSearch = async ({ recipeString, page }) => {
   return response.data
 }
 
-export default { getDefaultSearch, setToken }
+const getRecipeInfo = async (id) => {
+  console.log('test')
+  const url = `${baseUrl}/recipeSearch/${id}`
+  const response = await axios.get(url)
+  console.log(response)
+  return response.data
+}
+
+export default { getDefaultSearch, setToken, getRecipeInfo }

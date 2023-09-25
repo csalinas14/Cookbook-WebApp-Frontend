@@ -49,10 +49,10 @@ const Pagination = () => {
 
   const currentPage = Number(searchParams.get('page')) + 1
   const lastPage = Math.floor(recipes.totalResults / recipes.number) + 1
-  console.log(lastPage)
+  //console.log(lastPage)
   const pageArray = getPageArray(currentPage, lastPage)
   //const pageArray = getPageArray(238, lastPage)
-  console.log(pageArray)
+  //console.log(pageArray)
 
   const lastTripleDots =
     pageArray.includes(lastPage) && lastPage > 5 ? 'invisible' : ''
@@ -65,7 +65,7 @@ const Pagination = () => {
 
   const nextPage = (event, next) => {
     event.preventDefault()
-    console.log(next)
+    //console.log(next)
     const searchObject = {
       recipeString: searchParams.get('recipeString'),
       page: Number(searchParams.get('page')) + next,

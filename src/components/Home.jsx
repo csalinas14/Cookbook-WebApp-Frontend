@@ -15,6 +15,7 @@ const Home = () => {
 
   const recipe = searchParams.get('recipeString')
   const page = searchParams.get('page')
+  //const id = searchParams.get('id')
 
   useEffect(() => {
     console.log('HOME USEEFFECT')
