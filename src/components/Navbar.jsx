@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   const [hideMobileMenu, setHideMobileMenu] = useState(true)
@@ -8,7 +9,9 @@ const Navbar = () => {
     //event.preventDefault()
     setHideMobileMenu(!hideMobileMenu)
   }
-  const hidden = hideMobileMenu ? 'top-[-100%]' : 'top-[7%]'
+  const hidden = hideMobileMenu ? 'top-[-100%]' : 'top-[6.5%]'
+  const allowHidingMenu =
+    hidden == 'top-[6.5%]' ? () => toggleMobileMenu() : null
   //console.log(hidden)
   return (
     <nav className='m:w-[92%] mx-auto flex w-full items-center justify-between px-3 py-1'>
@@ -17,9 +20,13 @@ const Navbar = () => {
       >
         <ul className='flex flex-col gap-8 md:flex-row md:items-center md:gap-[4vw]'>
           <li>
-            <a className='hover:text-gray-500' href='#'>
+            <Link
+              className='hover:text-gray-500'
+              to='/'
+              onClick={allowHidingMenu}
+            >
               Home
-            </a>
+            </Link>
           </li>
           <li>
             <a href='#' className='hover:text-gray-500'>
@@ -27,9 +34,13 @@ const Navbar = () => {
             </a>
           </li>
           <li>
-            <a href='#' className='hover:text-gray-500'>
+            <Link
+              className='hover:text-gray-500'
+              to='/login'
+              onClick={allowHidingMenu}
+            >
               Login
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

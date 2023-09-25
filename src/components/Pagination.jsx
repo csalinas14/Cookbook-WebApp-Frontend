@@ -76,7 +76,7 @@ const Pagination = () => {
   //console.log(lastTripleDots)
 
   return (
-    <div className='relative w-full ' role='group'>
+    <div className='relative w-full py-2' role='group'>
       <nav
         aria-label='Pagination'
         className='flex items-center justify-evenly text-gray-600'
