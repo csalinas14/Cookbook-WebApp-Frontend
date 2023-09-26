@@ -1,8 +1,20 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { checkIfLoggedIn, logout } from '../reducers/userReducer'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const user = useSelector(({ user }) => user)
+  console.log(user)
+
   const [hideMobileMenu, setHideMobileMenu] = useState(true)
+
+  useEffect(() => {
+    dispatch(checkIfLoggedIn())
+  }, [])
 
   //console.log(hideMobileMenu)
   const toggleMobileMenu = (event) => {
@@ -12,6 +24,21 @@ const Navbar = () => {
   const hidden = hideMobileMenu ? 'top-[-100%]' : 'top-[6.5%]'
   const allowHidingMenu =
     hidden == 'top-[6.5%]' ? () => toggleMobileMenu() : null
+
+  const handleLogout = (event) => {
+    event.preventDefault()
+    dispatch(logout())
+    if (hidden == 'top-[6.5%]') {
+      toggleMobileMenu()
+    }
+    navigate('/')
+  }
+
+  const handleSignUpBtn = (event) => {
+    event.preventDefault()
+    navigate('/signup')
+  }
+
   //console.log(hidden)
   return (
     <nav className='m:w-[92%] mx-auto flex w-full items-center justify-between px-3 py-1'>
@@ -33,21 +60,33 @@ const Navbar = () => {
               Favorites
             </a>
           </li>
-          <li>
-            <Link
-              className='hover:text-gray-500'
-              to='/login'
-              onClick={allowHidingMenu}
-            >
-              Login
-            </Link>
-          </li>
+          {!user ? (
+            <li>
+              <Link
+                className={`hover:text-gray-500`}
+                to='/login'
+                onClick={allowHidingMenu}
+              >
+                Login
+              </Link>
+            </li>
+          ) : (
+            <li onClick={handleLogout} className='hover:text-gray-500'>
+              Logout
+            </li>
+          )}
         </ul>
       </div>
-      <div className='flex flex-row-reverse items-center gap-6'>
-        <button className='rounded-full bg-[#a6c1ee] px-5 py-2 text-white hover:bg-[#87acec]'>
-          Sign In
-        </button>
+      <div className='flex w-full flex-row-reverse items-center justify-between gap-6'>
+        <div className='flex flex-row-reverse items-center gap-3'>
+          <button
+            onClick={handleSignUpBtn}
+            className='rounded-full bg-blue-600 px-5 py-2 text-white hover:bg-blue-700'
+          >
+            Sign Up
+          </button>
+          {user && <p className='font-light italic'>Hey {user.name}!</p>}
+        </div>
         <svg
           xmlns='http://www.w3.org/2000/svg'
           fill='none'

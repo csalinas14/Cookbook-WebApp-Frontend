@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: true,
-  content: ["./src/**/*.{js,jsx,ts,tsx,vue,html}"],
+  content: ['./src/**/*.{js,jsx,ts,tsx,vue,html}'],
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 }
