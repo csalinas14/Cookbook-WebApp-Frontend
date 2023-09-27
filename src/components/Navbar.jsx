@@ -7,14 +7,16 @@ import { useNavigate } from 'react-router-dom'
 const Navbar = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const user = useSelector(({ user }) => user)
+  const user = useSelector(({ user }) => user.user)
   console.log(user)
 
   const [hideMobileMenu, setHideMobileMenu] = useState(true)
 
+  /*
   useEffect(() => {
     dispatch(checkIfLoggedIn())
   }, [])
+  */
 
   //console.log(hideMobileMenu)
   const toggleMobileMenu = (event) => {
@@ -56,9 +58,13 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <a href='#' className='hover:text-gray-500'>
+            <Link
+              to='/favorites'
+              className='hover:text-gray-500'
+              onClick={allowHidingMenu}
+            >
               Favorites
-            </a>
+            </Link>
           </li>
           {!user ? (
             <li>

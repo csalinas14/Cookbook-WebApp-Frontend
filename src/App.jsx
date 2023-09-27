@@ -4,14 +4,23 @@ import Navbar from './components/Navbar'
 import Recipe from './components/Recipe'
 import Login from './components/Login'
 import SignUp from './components/SignUp'
+import Favorites from './components/Favorites'
+import PrivateRoute from './components/PrivateRoute'
 import { Routes, Route, useMatch } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { checkIfLoggedIn } from './reducers/userReducer'
 import recipeService from './services/recipes'
-import { useState } from 'react'
+import { useEffect } from 'react'
+import { useFirstRender } from './hooks/firstRender'
 
 const App = () => {
+  const dispatch = useDispatch()
   const recipeData = 'test'
+  const first = useFirstRender()
 
+  useEffect(() => {
+    dispatch(checkIfLoggedIn())
+  }, [])
   /*
   const [recipeApiCall, setRecipeApiCall] = useState()
 
@@ -30,6 +39,14 @@ const App = () => {
     <div className='flex h-screen flex-col'>
       <Navbar />
       <Routes>
+        <Route
+          path='/favorites'
+          element={
+            <PrivateRoute first={first}>
+              <Favorites />
+            </PrivateRoute>
+          }
+        />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<Login />} />
         <Route path='/recipes/:id' element={<Recipe />} />

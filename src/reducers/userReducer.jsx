@@ -1,8 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import loginService from '../services/login'
 import recipeService from '../services/recipes'
+import { useNavigate } from 'react-router-dom'
 
-const initialState = null
+const initialState = {
+  loading: null,
+  user: null,
+  error: null,
+}
 
 const userSlice = createSlice({
   name: 'user',
@@ -14,36 +19,72 @@ const userSlice = createSlice({
       recipeService.setToken(user.token)
       return user
     },
-    checkIfLoggedIn() {
+    checkIfLoggedIn(state, action) {
       const loggedInUserJSON = window.localStorage.getItem(
         'loggedRecipeAppUser',
       )
       if (loggedInUserJSON) {
         const user = JSON.parse(loggedInUserJSON)
         recipeService.setToken(user.token)
-        return user
+        return {
+          ...state,
+          user: user,
+        }
       }
     },
     logout() {
       window.localStorage.removeItem('loggedRecipeAppUser')
-      return null
+      return initialState
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(login.pending, (state) => {
+        ;(state.loading = true), (state.user = null), (state.error = null)
+      })
+      .addCase(login.fulfilled, (state, action) => {
+        ;(state.loading = false),
+          (state.user = action.payload),
+          (state.error = null)
+      })
+      .addCase(login.rejected, (state, action) => {
+        state.loading = false
+        state.user = null
+        //console.log(action)
+        if (action.error.message === 'Request failed with status code 401') {
+          //console.log('tessaf')
+          state.error = 'Invalid Credentials! Please try again!'
+        } else {
+          state.error = action.error.message
+        }
+      })
   },
 })
 
 export const { setUser, checkIfLoggedIn, logout } = userSlice.actions
 
-export const login = (userInfo) => {
+export const loginold = (userInfo) => {
   return async (dispatch) => {
     try {
       const loggedInUser = await loginService.login(userInfo)
       //console.log(loggedInUser)
       dispatch(setUser(loggedInUser))
     } catch (exception) {
-      //console.log(exception)
-      dispatch(setNotification('Wrong credentials', 10))
+      console.log(exception)
+      //dispatch(setNotification('Wrong credentials', 10))
     }
   }
 }
+
+export const login = createAsyncThunk('login', async (userInfo) => {
+  const loggedInUser = await loginService.login(userInfo)
+  window.localStorage.setItem(
+    'loggedRecipeAppUser',
+    JSON.stringify(loggedInUser),
+  )
+  recipeService.setToken(loggedInUser.token)
+  //thunkAPI.dispatch(setUser(loggedInUser))
+  return loggedInUser
+})
 
 export default userSlice.reducer
