@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import recipeService from '../services/recipes'
 import userService from '../services/users'
+import cloneDeep from 'lodash/cloneDeep'
 
 const recipeSlice = createSlice({
   name: 'recipes',
@@ -17,7 +18,8 @@ const recipeSlice = createSlice({
         ...action.payload,
         favorite: !action.payload.favorite,
       }
-
+      const stateObj = cloneDeep(state)
+      console.log(stateObj)
       const newResults = state.results.map((recipe) =>
         recipe.id !== recipeToChange.id ? recipe : recipeToChange,
       )
@@ -68,6 +70,7 @@ export const resetRecipes = () => {
 
 export const changeFavorite = (recipeObj) => {
   return async (dispatch) => {
+    console.log(recipeObj)
     dispatch(toggleFavorite(recipeObj))
   }
 }

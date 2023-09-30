@@ -1,6 +1,9 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, applyMiddleware, compose } from '@reduxjs/toolkit'
 import recipeReducer from './reducers/recipeReducer'
 import userReducer from './reducers/userReducer'
+import thunk from 'redux-thunk'
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 const store = configureStore({
   reducer: {
@@ -8,5 +11,5 @@ const store = configureStore({
     user: userReducer,
   },
 })
-
+/* eslint-enable */
 export default store

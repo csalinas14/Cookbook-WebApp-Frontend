@@ -10,10 +10,12 @@ const create = async (signupObject) => {
 
 const getFavorites = async () => {
   const token = recipeService.getToken()
+
   //console.log(token)
   const config = {
     headers: { Authorization: token },
   }
+  //console.log(config)
   const response = await axios.get(`${baseUrl}/favorites`, config)
   return response.data
 }
