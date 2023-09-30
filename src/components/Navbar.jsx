@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { checkIfLoggedIn, logout } from '../reducers/userReducer'
 import { useNavigate } from 'react-router-dom'
+import { resetRecipes } from '../reducers/recipeReducer'
 
 const Navbar = () => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const Navbar = () => {
   const handleLogout = (event) => {
     event.preventDefault()
     dispatch(logout())
+    dispatch(resetRecipes())
     if (hidden == 'top-[6.5%]') {
       toggleMobileMenu()
     }

@@ -3,8 +3,16 @@ const baseUrl = '/api/recipes'
 
 let token = null
 
+const getToken = () => {
+  return token
+}
+
 const setToken = (newToken) => {
   token = `bearer ${newToken}`
+}
+
+const resetToken = () => {
+  token = null
 }
 
 //used for standard recipe search
@@ -26,4 +34,29 @@ const getRecipeInfo = async (id) => {
   return response.data
 }
 
-export default { getDefaultSearch, setToken, getRecipeInfo }
+const favorite = async (recipeObject) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+
+  const response = await axios.post(baseUrl, recipeObject, config)
+  return response.data
+}
+
+const remove = async (recipeId) => {
+  const config = {
+    headers: { Authorization: token },
+  }
+  const response = await axios.delete(`${baseUrl}/${recipeId}`, config)
+  return response.data
+}
+
+export default {
+  getDefaultSearch,
+  setToken,
+  getRecipeInfo,
+  favorite,
+  getToken,
+  remove,
+  resetToken,
+}

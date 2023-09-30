@@ -5,7 +5,7 @@ const Header = () => {
     <div className='bg-red-200'>
       <div className='container items-center justify-center space-y-2 px-2 py-2'>
         <div className='flex justify-center'>
-          <p className='text-4xl font-semibold'>Recipe Search</p>
+          <h1 className='font-header text-5xl'>Recipe Search</h1>
         </div>
         <SearchBarForm />
       </div>

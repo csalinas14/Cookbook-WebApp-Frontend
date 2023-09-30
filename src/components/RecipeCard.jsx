@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import FavoriteButton from './FavoriteButton'
 import recipeService from '../services/recipes'
 import { useQuery } from '@tanstack/react-query'
 
@@ -33,8 +34,8 @@ const RecipeCard = ({ recipe }) => {
       onClick={handleRecipe}
       className='group mx-auto w-11/12 cursor-pointer overflow-hidden rounded-xl sm:w-full'
     >
-      <div className='flex flex-col items-center bg-yellow-500 sm:items-start '>
-        <div className='relative aspect-square w-full overflow-hidden sm:w-full'>
+      <div className='flex h-full flex-col items-center bg-yellow-500 sm:items-start'>
+        <div className='relative aspect-square w-full sm:w-full'>
           <div className='w-full object-cover transition group-hover:scale-110 sm:w-full'>
             <img
               alt='Recipe'
@@ -48,6 +49,9 @@ const RecipeCard = ({ recipe }) => {
                 </h3>
               </div>
             </div>
+          </div>
+          <div className='absolute right-7 top-7 sm:right-4 sm:top-4'>
+            <FavoriteButton recipeData={recipe} />
           </div>
         </div>
       </div>

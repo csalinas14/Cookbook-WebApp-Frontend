@@ -19,6 +19,7 @@ const App = () => {
   const first = useFirstRender()
 
   useEffect(() => {
+    console.log('app test')
     dispatch(checkIfLoggedIn())
   }, [])
   /*

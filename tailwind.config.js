@@ -3,7 +3,11 @@ export default {
   darkMode: true,
   content: ['./src/**/*.{js,jsx,ts,tsx,vue,html}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        header: ['Cookie'],
+      },
+    },
   },
   plugins: [require('@tailwindcss/forms'), require('daisyui')],
 }

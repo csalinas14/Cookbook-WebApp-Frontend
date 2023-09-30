@@ -34,7 +34,22 @@ const userSlice = createSlice({
     },
     logout() {
       window.localStorage.removeItem('loggedRecipeAppUser')
+      recipeService.resetToken()
       return initialState
+    },
+    addFavorite(state, action) {
+      const newFav = action.payload
+      state.user.recipes.push(newFav)
+      return state
+    },
+    removeFavorite(state, action) {
+      const unFavId = action.payload
+      const filterRecipes = state.user.recipes.filter(
+        (recipe) => recipe.spoonId !== unFavId,
+      )
+      console.log(filterRecipes)
+      state.user.recipes = filterRecipes
+      return state
     },
   },
   extraReducers: (builder) => {
@@ -61,7 +76,8 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, checkIfLoggedIn, logout } = userSlice.actions
+export const { setUser, checkIfLoggedIn, logout, addFavorite, removeFavorite } =
+  userSlice.actions
 
 export const loginold = (userInfo) => {
   return async (dispatch) => {
@@ -86,5 +102,29 @@ export const login = createAsyncThunk('login', async (userInfo) => {
   //thunkAPI.dispatch(setUser(loggedInUser))
   return loggedInUser
 })
+
+export const favoriteRecipe = (recipeInfo) => {
+  return async (dispatch) => {
+    try {
+      const favRecipe = await recipeService.favorite(recipeInfo)
+      console.log(favRecipe)
+      dispatch(addFavorite(favRecipe))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const unfavoriteRecipe = (recipeId) => {
+  return async (dispatch) => {
+    try {
+      const unFavRecipe = await recipeService.remove(recipeId)
+      console.log(unFavRecipe)
+      dispatch(removeFavorite(recipeId))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
 
 export default userSlice.reducer
