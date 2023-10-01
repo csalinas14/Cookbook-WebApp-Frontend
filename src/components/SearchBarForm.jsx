@@ -62,7 +62,7 @@ const SearchBarForm = () => {
             autoComplete='off'
             aria-label='Search recipes'
             onChange={({ target }) => setSearch(target.value)}
-            className='w-full rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black placeholder-gray-500 ring-2 ring-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
+            className='w-full rounded-2xl border-none py-2 pl-10 pr-3 font-semibold text-black placeholder-gray-400 ring-2 ring-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500'
           ></input>
         </div>
       </form>
