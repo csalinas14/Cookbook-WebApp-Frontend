@@ -1,7 +1,7 @@
 import axios from 'axios'
 import recipeService from './recipes'
 
-const baseUrl = 'api/users'
+const baseUrl = 'https://my-cookbook-usi7.onrender.com/api/users'
 
 const create = async (signupObject) => {
   const response = await axios.post(baseUrl, signupObject)
