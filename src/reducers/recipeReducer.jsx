@@ -35,6 +35,8 @@ export const getRecipes = (recipe, user) => {
   return async (dispatch) => {
     const recipes = await recipeService.getDefaultSearch(recipe)
     console.log(recipes)
+    console.log('THis is lcoal storage')
+    console.log(window.localStorage.getItem('loggedRecipeAppUser'))
     if (user || window.localStorage.getItem('loggedRecipeAppUser')) {
       const usersFavoriteRecipes = await userService.getFavorites()
       const userFavoriteIds = usersFavoriteRecipes.map(
