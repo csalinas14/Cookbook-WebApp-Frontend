@@ -1,6 +1,5 @@
 import axios from 'axios'
-import config from '../utils/config'
-const baseUrl = `${config.API_URL}/api/recipes`
+const baseUrl = `https://my-cookbook-usi7.onrender.com/api/recipes`
 
 let token = null
 
