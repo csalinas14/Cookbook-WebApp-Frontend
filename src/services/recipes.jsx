@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = '/api/recipes'
+import config from '../utils/config'
+const baseUrl = `${config.API_URL}/api/recipes`
 
 let token = null
 
