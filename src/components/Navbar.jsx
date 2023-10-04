@@ -47,7 +47,7 @@ const Navbar = () => {
   return (
     <nav className='m:w-[92%] mx-auto flex w-full items-center justify-between px-3 py-1'>
       <div
-        className={`absolute left-0 bg-white ${hidden} z-10 flex min-h-[30vh] w-full items-center px-4 md:static md:min-h-fit md:w-auto`}
+        className={`absolute left-0 ${hidden} bg-base-100 z-10 flex min-h-[30vh] w-full items-center px-4 md:static md:min-h-fit md:w-auto`}
       >
         <ul className='flex flex-col gap-8 md:flex-row md:items-center md:gap-[4vw]'>
           <li>

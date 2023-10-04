@@ -37,7 +37,10 @@ export const getRecipes = (recipe, user) => {
     console.log(recipes)
     console.log('THis is lcoal storage')
     console.log(window.localStorage.getItem('loggedRecipeAppUser'))
-    if (user || window.localStorage.getItem('loggedRecipeAppUser')) {
+    if (
+      (user || window.localStorage.getItem('loggedRecipeAppUser')) &&
+      window.localStorage.getItem('loggedRecipeAppUser') !== undefined
+    ) {
       const usersFavoriteRecipes = await userService.getFavorites()
       const userFavoriteIds = usersFavoriteRecipes.map(
         (recipe) => recipe.spoonId,
