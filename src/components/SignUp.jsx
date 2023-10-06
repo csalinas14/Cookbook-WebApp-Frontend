@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import userService from '../services/users'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const SignUp = () => {
   const navigate = useNavigate()
@@ -111,9 +111,12 @@ const SignUp = () => {
             </button>
             <p className='text-sm font-light text-gray-500'>
               Already have an account?{' '}
-              <a href='#' className='font-medium text-blue-600 hover:underline'>
+              <Link
+                to='/login'
+                className='font-medium text-blue-600 hover:underline'
+              >
                 Login here
-              </a>
+              </Link>
             </p>
           </form>
         </div>

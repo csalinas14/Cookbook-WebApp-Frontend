@@ -36,7 +36,7 @@ const Home = () => {
   //dispatch(getRecipes({ recipeString: recipe, page: page }, user))
 
   return (
-    <div>
+    <div className='flex h-screen flex-col'>
       <Header />
       <RecipeList />
       <Pagination />

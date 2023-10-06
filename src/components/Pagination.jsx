@@ -40,7 +40,7 @@ const PageNumber = ({ page }) => {
 }
 
 const Pagination = () => {
-  const recipes = useSelector(({ recipes }) => recipes)
+  const { recipes, loading } = useSelector(({ recipes }) => recipes)
   const [searchParams, setSearchParams] = useSearchParams()
 
   if (recipes.length === 0) {

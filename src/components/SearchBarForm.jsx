@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { getRecipes } from '../reducers/recipeReducer'
 import { useSearchParams } from 'react-router-dom'
 
+//button component no longer going to be used
+/*
 const SearchButton = ({ name, handleClick, type }) => {
   const active = type === name ? 'bg-blue-500' : 'bg-gray-100'
   //console.log(active)
@@ -13,11 +15,11 @@ const SearchButton = ({ name, handleClick, type }) => {
       {name}
     </button>
   )
-}
+}*/
 
 const SearchBarForm = () => {
   const [search, setSearch] = useState('')
-  const [searchType, setSearchType] = useState('Standard')
+  //const [searchType, setSearchType] = useState('Standard')
   const [searchParams, setSearchParams] = useSearchParams()
 
   const searchRecipes = (event) => {
@@ -29,11 +31,13 @@ const SearchBarForm = () => {
     setSearch('')
   }
 
+  //old event for buttons no longer in use
+  /*
   const handleDefault = (event, value) => {
     //event.preventDefault()
     //console.log(value)
     setSearchType(value)
-  }
+  }*/
 
   return (
     <>
@@ -66,6 +70,9 @@ const SearchBarForm = () => {
           ></input>
         </div>
       </form>
+
+      {/** old buttons no longer going to be implemented
+       
       <div className='flex justify-between'>
         <SearchButton
           name={'Standard'}
@@ -83,6 +90,7 @@ const SearchBarForm = () => {
           type={searchType}
         />
       </div>
+      */}
     </>
   )
 }

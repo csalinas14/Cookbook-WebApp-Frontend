@@ -5,13 +5,13 @@ import cloneDeep from 'lodash/cloneDeep'
 
 const recipeSlice = createSlice({
   name: 'recipes',
-  initialState: [],
+  initialState: { recipes: [], loading: false },
   reducers: {
     appendRecipe(state, action) {
       state.push(...action.payload)
     },
     setRecipes(state, action) {
-      return action.payload
+      return { recipes: action.payload, loading: false }
     },
     toggleFavorite(state, action) {
       const recipeToChange = {
@@ -20,19 +20,24 @@ const recipeSlice = createSlice({
       }
       const stateObj = cloneDeep(state)
       console.log(stateObj)
-      const newResults = state.results.map((recipe) =>
+      const newResults = state.recipes.results.map((recipe) =>
         recipe.id !== recipeToChange.id ? recipe : recipeToChange,
       )
-      state.results = newResults
-      return state
+      state.recipes.results = newResults
+      return { ...state }
+    },
+    loadState(state, action) {
+      return { ...state, loading: true }
     },
   },
 })
 
-export const { appendRecipe, setRecipes, toggleFavorite } = recipeSlice.actions
+export const { appendRecipe, setRecipes, toggleFavorite, loadState } =
+  recipeSlice.actions
 
 export const getRecipes = (recipe, user) => {
   return async (dispatch) => {
+    dispatch(loadState())
     const recipes = await recipeService.getDefaultSearch(recipe)
     console.log(recipes)
     console.log('THis is lcoal storage')

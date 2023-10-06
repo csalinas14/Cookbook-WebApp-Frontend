@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../reducers/userReducer'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 
 const Login = () => {
   const dispatch = useDispatch()
@@ -87,9 +87,12 @@ const Login = () => {
             </button>
             <p className='text-sm font-light text-gray-500'>
               Don't have account yet?{' '}
-              <a href='#' className='font-medium text-blue-600 hover:underline'>
+              <Link
+                to='/signup'
+                className='font-medium text-blue-600 hover:underline'
+              >
                 Sign up
-              </a>
+              </Link>
             </p>
           </form>
         </div>
