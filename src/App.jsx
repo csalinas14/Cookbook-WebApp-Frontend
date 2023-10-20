@@ -6,16 +6,14 @@ import Login from './components/Login'
 import SignUp from './components/SignUp'
 import Favorites from './components/Favorites'
 import PrivateRoute from './components/PrivateRoute'
-import { Routes, Route, useMatch } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { checkIfLoggedIn } from './reducers/userReducer'
-import recipeService from './services/recipes'
 import { useEffect } from 'react'
 import { useFirstRender } from './hooks/firstRender'
 
 const App = () => {
   const dispatch = useDispatch()
-  const recipeData = 'test'
   const first = useFirstRender()
 
   useEffect(() => {

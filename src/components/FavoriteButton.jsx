@@ -1,6 +1,5 @@
 import { AiOutlineStar, AiFillStar } from 'react-icons/ai'
 import { useState } from 'react'
-import recipeService from '../services/recipes'
 import { useDispatch, useSelector } from 'react-redux'
 import { favoriteRecipe, unfavoriteRecipe } from '../reducers/userReducer'
 import { changeFavorite } from '../reducers/recipeReducer'
